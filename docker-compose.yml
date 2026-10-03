@@ -1,0 +1,27 @@
+services:
+
+  flask-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.flask
+    container_name: task15-flask-api
+    ports:
+      - "5000:5000"
+    networks:
+      - task15-network
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: task15-streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - flask-api
+    networks:
+      - task15-network
+
+networks:
+  task15-network:
+    driver: bridge
