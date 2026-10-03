@@ -18,9 +18,11 @@ st.set_page_config(
 # Flask API Configuration
 # ==========================================
 
+# Uses the environment variable when available.
+# Otherwise, uses the public cloud Flask API.
 FLASK_API_URL = os.getenv(
     "FLASK_API_URL",
-    "http://flask-api:5000"
+    "https://task15-flask-api.onrender.com"
 )
 
 # ==========================================
@@ -28,6 +30,7 @@ FLASK_API_URL = os.getenv(
 # ==========================================
 
 st.title("🧠 CIFAR-10 Deep Learning Image Classifier")
+
 st.write(
     "Upload an image and the deep learning model will "
     "predict its CIFAR-10 class."
@@ -103,3 +106,4 @@ if uploaded_file is not None:
                 )
 
                 st.write(str(e))
+
